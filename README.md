@@ -1,2 +1,2 @@
 # JC-canvas
-A lightweight rendering engine based on canvas
+一个轻量级的canvas渲染引擎
