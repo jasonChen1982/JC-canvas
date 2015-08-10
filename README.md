@@ -37,7 +37,7 @@ JC支持绘制四种类型的物体，容器（Container）、位图（Sprite）
 
     <script type="text/javascript" src="/js/jc.js"></script>
     <script type="text/javascript">
-    var spriteSheet = new JC.ImagesLoad({
+    var spriteSheet = new JC.ImagesLoad({   // 位图资源加载
                             'man': './images/man.png'
                         });
     var w = window.innerWidth*2,
@@ -46,20 +46,20 @@ JC支持绘制四种类型的物体，容器（Container）、位图（Sprite）
         shape,
         text,
         stage;
-        stage = new JC.Stage('canvas');
-        stage.resize(w,h);
+        stage = new JC.Stage('canvas');   // 实例化舞台
+        stage.resize(w,h);  // 初始化舞台宽高
 
         spriteSheet.imagesLoaded = function (){
             
-            DOC = new JC.Container();
+            DOC = new JC.Container();   // 实例化容器
             DOC.x = w/2;
             DOC.y = h/2;
 
 
-            shape = new JC.Graphics();
+            shape = new JC.Graphics();  // 实例化形状
             shape.beginFill('#ff0000').arc(0, 0, 20, 0, 2*Math.PI).closePath();
-            shape.cache(-20, -20, 40, 40);
-            shape.moveTween({
+            shape.cache(-20, -20, 40, 40);  // 缓存形状
+            shape.moveTween({  // 动画功能使用
                 attr: {
                     x: 1000*(Math.random()-.5),
                     y: 1000*(Math.random()-.5)
@@ -73,7 +73,7 @@ JC支持绘制四种类型的物体，容器（Container）、位图（Sprite）
 
 
 
-            sprite = new JC.Sprite({
+            sprite = new JC.Sprite({  // 实例化位图
                                 image: spriteSheet.getResult('man'),
                                 count: 26,
                                 width: 165,
@@ -81,19 +81,19 @@ JC支持绘制四种类型的物体，容器（Container）、位图（Sprite）
                             });
             sprite.regX = 82;
             sprite.regY = 146;
-            sprite.goFrames({
+            sprite.goFrames({  // 播放位图逐帧
                 sH: 0,
                 loop: false
             });
 
-            text = new JC.Text('文本字符串','30px Arial','#ff0000');
+            text = new JC.Text('文本字符串','30px Arial','#ff0000');  // 实例化文字
             text.x = 200;
-            text.regX = 75;
-            text.regY = -15;
+            text.regX = 75;  // 设置文字中心点
+            text.regY = -15; // 设置文字中心点
             text.rotation = 720;
             text.scale(0);
             text.alpha = 0;
-            text.moveTween({
+            text.moveTween({  //  动画功能使用
                 attr: {
                     rotation: 0,
                     scaleXY: 1,
@@ -107,15 +107,15 @@ JC支持绘制四种类型的物体，容器（Container）、位图（Sprite）
             });
 
 
-            DOC.addChild(shape,sprite,text);
-            stage.addChild(DOC);
+            DOC.addChild(shape,sprite,text); //  将物体添加到容器
+            stage.addChild(DOC);  //  将容器或物体添加到舞台
 
-            stage.render();
+            stage.render();  //  渲染舞台
             render();
         }
 
 
-    function render(){
+    function render(){  //  循环渲染舞台
         
 
         stage.render();
