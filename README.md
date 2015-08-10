@@ -1,7 +1,7 @@
 # JC-canvas
 一个轻量级的canvas渲染引擎
 
-#### 引擎功能 ####
+### 引擎功能 ###
 
 主要渲染canvas的三种类型的物体，位图、形状和文字。JC-canvas（一下简称JC）提供了简单的API接口来操作物体，并且可以调用每个物体的时间运动函数来使物体做运动。可以操作的属性（alpha、scale、rotation、skew、translate）。
 
@@ -28,6 +28,104 @@ JC支持绘制四种类型的物体，容器（Container）、位图（Sprite）
 
 ### 使用例子 ###
 
+#### 例子1 ####
+
+```html
+    <canvas id="canvas">
+        <p>You need a <a href="http://www.uc.cn">modern browser</a> to view this.</p>
+    </canvas>
+
+    <script type="text/javascript" src="/js/jc.js"></script>
+    <script type="text/javascript">
+    var spriteSheet = new JC.ImagesLoad({
+                            'man': './images/man.png'
+                        });
+    var w = window.innerWidth*2,
+        h = Math.max(window.innerHeight,460)*2,
+        DOC,
+        shape,
+        text,
+        stage;
+        stage = new JC.Stage('canvas');
+        stage.resize(w,h);
+
+        spriteSheet.imagesLoaded = function (){
+            
+            DOC = new JC.Container();
+            DOC.x = w/2;
+            DOC.y = h/2;
+
+
+            shape = new JC.Graphics();
+            shape.beginFill('#ff0000').arc(0, 0, 20, 0, 2*Math.PI).closePath();
+            shape.cache(-20, -20, 40, 40);
+            shape.moveTween({
+                attr: {
+                    x: 1000*(Math.random()-.5),
+                    y: 1000*(Math.random()-.5)
+                },
+                time: 1000,
+                fx: 'elasticOut',
+                complete: function(){
+                    console.log('动画结束回调');
+                }
+            });
+
+
+
+            sprite = new JC.Sprite({
+                                image: spriteSheet.getResult('man'),
+                                count: 26,
+                                width: 165,
+                                height: 292
+                            });
+            sprite.regX = 82;
+            sprite.regY = 146;
+            sprite.goFrames({
+                sH: 0,
+                loop: false
+            });
+
+            text = new JC.Text('文本字符串','30px Arial','#ff0000');
+            text.x = 200;
+            text.regX = 75;
+            text.regY = -15;
+            text.rotation = 720;
+            text.scale(0);
+            text.alpha = 0;
+            text.moveTween({
+                attr: {
+                    rotation: 0,
+                    scaleXY: 1,
+                    alpha: 1
+                },
+                time: 8000,
+                fx: 'elasticOut',
+                complete: function(){
+                    console.log('动画结束回调');
+                }
+            });
+
+
+            DOC.addChild(shape,sprite,text);
+            stage.addChild(DOC);
+
+            stage.render();
+            render();
+        }
+
+
+    function render(){
+        
+
+        stage.render();
+        RAF(render);
+    }
+```
+
+
+
+#### 例子2 ####
 
 ```html
 <canvas id="canvas"></canvas>
