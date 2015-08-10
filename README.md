@@ -27,7 +27,7 @@ JC支持绘制四种类型的物体，容器（Container）、位图（Sprite）
 ### 使用例子 ###
 
 
-
+```html
 <canvas id="canvas"></canvas>
 <script type="text/javascript" src="./js/jc.js"></script>
 <script type="text/javascript">
@@ -175,6 +175,9 @@ JC支持绘制四种类型的物体，容器（Container）、位图（Sprite）
         stage.render();
         RAF(render);
     }
+
+</script>
+```
 
 
 ### 说明 ###
