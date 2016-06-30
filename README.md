@@ -1,3 +1,7 @@
+# 引擎已不再维护，感兴趣的工友请移步 [jcc2d](https://github.com/jasonChen1982/jcc2d) 
+
+
+
 # JC-canvas
 一个轻量级的canvas渲染引擎
 
