@@ -1,4 +1,4 @@
-# 引擎已不再维护，感兴趣的工友请移步 [jcc2d](https://github.com/jasonChen1982/jcc2d) 
+# 引擎已迁徙到[jcc2d](https://github.com/jasonChen1982/jcc2d) ，感兴趣的工友请移步 [jcc2d](https://github.com/jasonChen1982/jcc2d) 
 
 
 
